@@ -1,0 +1,44 @@
+//Write a program to find sum of minimum absolute difference of the given array in C
+#include<stdio.h>
+
+void sort(int arr[],int n){
+    
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            if(arr[i]<arr[j]){
+                int temp=arr[i];
+                arr[i]=arr[j];
+                arr[j]=temp;
+           }
+        }
+    }
+}
+
+int main()
+{
+    int arr[]={2, 4, 5, 3};
+
+    int n = sizeof(arr)/sizeof(arr[0]);
+
+    sort(arr, n);  //sort first array
+
+    int median ; //variable to store the median
+
+    if(n%2==0)
+    median = ((arr[n/2]+arr[n/2+1])/2);
+
+    else median = arr[n/2];
+
+    int sum =0 ; // variable to hold the sum
+
+    for(int i=0; i<n; i++){
+
+        int x=arr[i]-median;
+        if(x<0)
+            sum += -x;
+
+        else sum += x;
+    }    
+    printf("Minimum Absolute Difference Sum is %d", sum);
+    return 0;
+}
